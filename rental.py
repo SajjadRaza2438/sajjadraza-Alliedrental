@@ -20,7 +20,8 @@ st.title('HSE Performance Dashboard')
 st.subheader('January to March')
 
 # Load data into a pandas dataframe
-df = pd.read_csv('C:\\Users\\Home PC\\Desktop\\hsesummary.csv')
+file = "C:\\Users\\Home PC\\Desktop\\hsesummary.csv"
+df = pd.read_csv('hsesummary.csv')
 
 # Print the column names to check for typos
 print(df.columns)
