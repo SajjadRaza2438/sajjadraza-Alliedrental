@@ -53,32 +53,37 @@ col4.metric(label='Number of training sessions', value=total_training_sessions)
 
 
 
-
-# Create a container to hold the bar charts
 # Create a container to hold the bar charts
 with st.container():
+    
     # Create three columns to hold the bar charts
     col1, col2, col3 = st.columns(3)
 
     # Create a bar chart to display Rental Power and Rental Power Target values
     fig1, ax1 = plt.subplots()
-    ax1.bar(['Rental Power', 'Rental Power Target'], 
-            [df_region['Rental Power'].sum(), df_region['Rental Power Target'].sum()], color=['blue', 'orange']) # Set the color of the second bar to orange)
+    ax1.bar(['Rental Power Audits', 'Rental Power Target'], 
+            [df_region['Rental Power Audits'].sum(), df_region['Rental Power Target'].sum()], color=['blue', 'orange']) # Set the color of the second bar to orange)
     ax1.set_title('Rental Power vs Rental Power Target')
+    for i, v in enumerate([df_region['Rental Power Audits'].sum(), df_region['Rental Power Target'].sum()]):
+        ax1.text(i, v + 0.5, str(v), ha='center', fontweight='bold')
     col1.pyplot(fig1)
 
     # Create a bar chart to display Operation and Maintenance and Operation and Maintenance Target values
     fig2, ax2 = plt.subplots()
-    ax2.bar(['Operation and Maintenance', 'Operation and Maintenance Target'], 
-            [df_region['Operation and Maintenance (Power Houses)'].sum(), df_region['Operation and Maintenance (Power Houses) targets'].sum()],color=['blue', 'orange']) # Set the color of the second bar to orange)
+    ax2.bar(['Operation and Maintenance Audits', 'Operation and Maintenance Target'], 
+            [df_region['Operation and Maintenance Audits'].sum(), df_region['Operation and Maintenance (Power Houses) targets'].sum()],color=['blue', 'orange']) # Set the color of the second bar to orange)
     ax2.set_title('Operation and Maintenance vs Operation and Maintenance Target')
+    for i, v in enumerate([df_region['Operation and Maintenance Audits'].sum(), df_region['Operation and Maintenance (Power Houses) targets'].sum()]):
+        ax2.text(i, v + 0.08, str(v), ha='center', fontweight='bold')
     col2.pyplot(fig2)
 
     # Create a bar chart to display MHE and MHE Target values
     fig3, ax3 = plt.subplots()
-    ax3.bar(['MHE', 'MHE targets'], 
-            [df_region['MHE'].sum(), df_region['MHE targets'].sum()], color=['blue', 'orange']) # Set the color of the second bar to orange)
+    ax3.bar(['MHE Audits', 'MHE targets'], 
+            [df_region['MHE Audits'].sum(), df_region['MHE targets'].sum()], color=['blue', 'orange']) # Set the color of the second bar to orange)
     ax3.set_title('MHE vs MHE Target')
+    for i, v in enumerate([df_region['MHE Audits'].sum(), df_region['MHE targets'].sum()]):
+        ax3.text(i, v + 0.1, str(v), ha='center', fontweight='bold')
     col3.pyplot(fig3)
     
     
@@ -88,65 +93,34 @@ with st.container():
 
     # Create a pie chart to display Logistics Vigilance and Logistics Vigilance Target values
     fig4, ax4 = plt.subplots()
-    sizes = [df_region['Logistics Vigilance (Vehicles)'].sum(), df_region['Logistics Vigilance (Vehicles) Targets'].sum()]
-    labels = ['Logistics Vigilance', 'Logistics Vigilance Target']
-    ax4.pie(sizes, labels=labels, autopct='%1.1f%%')
+    ax4.bar(['Logistics Vigilance (Vehicles)','Logistics Vigilance (Vehicles) Targets'], 
+            [df_region['Logistics Vigilance (Vehicles)'].sum(), df_region['Logistics Vigilance (Vehicles) Targets'].sum()], color=['blue', 'orange']) # Set the color of the second bar to orange)
     ax4.set_title('Logistics Vigilance vs Logistics Vigilance Target')
+    for i, v in enumerate([df_region['Logistics Vigilance (Vehicles)'].sum(), df_region['Logistics Vigilance (Vehicles) Targets'].sum()]):
+        ax4.text(i, v + 0.1, str(v), ha='center', fontweight='bold')
     col4.pyplot(fig4)
+    
+    
 
     # Create a pie chart to display Yard (Power + Logistics) and Yard (Power + Logistics) Target values
     fig5, ax5 = plt.subplots()
-    sizes = [df_region['Yard (Power + Logistics)'].sum(), df_region['Yard (Power + Logistics) Targets'].sum()]
-    labels = ['Yard (Power + Logistics)', 'Yard (Power + Logistics) Targets']
-    ax5.pie(sizes, labels=labels, autopct='%1.1f%%')
+    ax5.bar(['Yard (Power + Logistics) Audits','Yard (Power + Logistics) Targets'], 
+            [df_region['Yard (Power + Logistics) Audits'].sum(), df_region['Yard (Power + Logistics) Targets'].sum()], color=['blue', 'orange']) # Set the color of the second bar to orange)
     ax5.set_title('Yard (Power + Logistics) vs Yard (Power + Logistics) Target')
+    for i, v in enumerate([df_region['Yard (Power + Logistics) Audits'].sum(), df_region['Yard (Power + Logistics) Targets'].sum()]):
+        ax5.text(i, v + 0.1, str(v), ha='center', fontweight='bold')
     col5.pyplot(fig5)
 
     # Create a pie chart to display Machine & Cranes and Machine & Cranes Target values
     fig6, ax6 = plt.subplots()
-    sizes = [df_region['Machine & Cranes'].sum(), df_region['Machine & Cranes Targets'].sum()]
-    labels = ['Machine & Cranes', 'Machine & Cranes Targets']
-    ax6.pie(sizes, labels=labels, autopct='%1.1f%%')
-    ax6.set_title('Machine & Cranes vs Machine & Cranes Target')
-    col6.pyplot(fig6)
-
-
-
-# # Create a container to hold the bar charts
-# with st.container():
-#     ax1, ax2, ax3 = st.columns(3)
-#     # Create a bar chart to display Rental Power and Rental Power Target values
-#     fig1, ax1 = plt.subplots()
-#     ax1.bar(['Rental Power', 'Rental Power Target'], 
-#             [df_region['Rental Power'].sum(), df_region['Rental Power Target'].sum()])
-#     ax1.set_title('Rental Power vs Rental Power Target')
-#     st.pyplot(fig1)
-
-#     # Create a bar chart to display Operation and Maintenance and Operation and Maintenance Target values
-#     fig2, ax2 = plt.subplots()
-#     ax2.bar(['Operation and Maintenance', 'Operation and Maintenance Target'], 
-#             [df_region['Operation and Maintenance (Power Houses)'].sum(), df_region['Operation and Maintenance (Power Houses) targets'].sum()])
-#     ax2.set_title('Operation and Maintenance vs Operation and Maintenance Target')
-#     st.pyplot(fig2)
-
-#     # Create a bar chart to display MHE and MHE Target values
-#     fig3, ax3 = plt.subplots()
-#     ax3.bar(['MHE', 'MHE targets'], 
-#             [df_region['MHE'].sum(), df_region['MHE targets'].sum()])
-#     ax3.set_title('MHE vs MHE Target')
-#     st.pyplot(fig3)
-
-
-
-# with st.container():
-#     bar1, hbar2, bar3 = st.columns(3)
-#     # Create the first bar plot for Rental Power and Rental Power Target
-#     fig, ax = plt.subplots()
-#     ax.bar(df_region['Regions '], df_region['Rental Power'], color='blue', label='Rental Power')
-#     ax.bar(df_region['Regions '], df_region['Rental Power Target'], color='gray', label='Target')
-#     plt.title('Rental Power vs Target')
-#     # bar1.pyplot(fig)
     
+    ax6.bar(['Machine & Cranes Audits','Machine & Cranes Targets'], 
+            [df_region['Machine & Cranes Audits'].sum(), df_region['Machine & Cranes Targets'].sum()], color=['blue', 'orange']) # Set the color of the second bar to orange)
+
+    ax6.set_title('Machine & Cranes vs Machine & Cranes Target')
+    for i, v in enumerate([df_region['Machine & Cranes Audits'].sum(), df_region['Machine & Cranes Targets'].sum()]):
+        ax6.text(i, v + 0.1, str(v), ha='center', fontweight='bold')
+    col6.pyplot(fig6)
     
 
 
